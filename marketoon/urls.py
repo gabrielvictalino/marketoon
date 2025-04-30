@@ -16,32 +16,52 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from app_marketoon.views import cadastro_produto,home
 from django.conf import settings
 from django.conf.urls.static import static
+from django.views.generic import TemplateView
+from app_marketoon import templates
+
 from app_marketoon import views
-from app_marketoon.views import wishlist_view, remover_wishlist, adicionar_wishlist, limpar_wishlist, checkout_view
+from app_marketoon.views import (
+    cadastro_produto,
+    home,
+    wishlist_view,
+    remover_wishlist,
+    adicionar_wishlist,
+    limpar_wishlist,
+    checkout_view
+)
 
 urlpatterns = [
+    # Admin
     path('admin/', admin.site.urls),
-    path('cadastro/',cadastro_produto, name='cadastro'),
+
+    # Página inicial
+    path('', home, name='home'),
+
+    # Produtos
+    path('produtos/', views.produtos, name='produtos'),
     path('produto/<int:id>/', views.detalhes_produto, name='detalhes_produto'),
-    path('wishlist/', wishlist_view, name='wishlist'),
+    path('cadastro/', TemplateView.as_view(template_name='cadastro.html'), name='cadastro'),
+
+    # Wishlist
+    path('wishlist/', TemplateView.as_view(template_name='wishlist.html'), name='wishlist'),
     path('wishlist/remover/<int:produto_id>/', remover_wishlist, name='remover_wishlist'),
     path('wishlist/adicionar/<int:produto_id>/', adicionar_wishlist, name='adicionar_wishlist'),
     path('wishlist/limpar/', limpar_wishlist, name='limpar_wishlist'),
     path('checkout/', checkout_view, name='checkout'),
-    path('', views.home, name='home'),  
-    path('wishlist/adicionar/<int:produto_id>/', views.adicionar_wishlist, name='adicionar_wishlist'),
+
+
+    # Carrinho
     path('adicionar-carrinho/<int:produto_id>/', views.adicionar_carrinho, name='adicionar_carrinho'),
-    path('carrinho/', views.carrinho, name='carrinho'),  
-    path('remover-carrinho/<int:produto_id>/', views.remover_carrinho, name='remover_carrinho'),  
+    path('carrinho/', TemplateView.as_view(template_name='carrinho.html'), name='carrinho'),
+    path('remover-carrinho/<int:produto_id>/', views.remover_carrinho, name='remover_carrinho'),
     path('limpar-carrinho/', views.limpar_carrinho, name='limpar_carrinho'),
-    path('produtos/', views.produtos, name='produtos'),  
 
-
-    
+    # Checkout
+    path('checkout/', checkout_view, name='checkout'),
 ]
 
+# Servir arquivos de mídia durante o desenvolvimento
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

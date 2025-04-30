@@ -50,7 +50,7 @@ def cadastro_produto(request):
         
         return redirect('/')
 
-    return render(request, 'app_marketoon/html.html')
+    return render(request, 'app_marketoon/cadastro.html')
 
 
 

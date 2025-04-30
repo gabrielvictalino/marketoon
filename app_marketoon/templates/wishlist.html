@@ -1,9 +1,9 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
   <meta charset="UTF-8">
   <title>Lista de Desejos</title>
-  {% load static %}
   <link rel="stylesheet" href="{% static 'css/wishlist.css' %}">
 </head>
 <body>
@@ -29,7 +29,7 @@
 
     <!-- LISTA DE PRODUTOS -->
     <section class="wishlist-items">
-      {% for produto in wishlist %}
+      {% for produto in produtos %}
         <div class="wishlist-card">
           <span class="wishlist-star">★</span>
           <div class="image-placeholder"></div>
