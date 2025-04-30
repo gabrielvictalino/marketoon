@@ -50,14 +50,14 @@ def cadastro_produto(request):
         
         return redirect('/')
 
-    return render(request, 'html.html')
+    return render(request, 'app_marketoon/html.html')
 
 
 
 def wishlist_view(request):
     wishlist_ids = request.session.get('wishlist', [])
     produtos = func_registrar_produto.objects.filter(id__in=wishlist_ids)
-    return render(request, 'wishlist.html', {'wishlist': produtos})
+    return render(request, 'app_marketoon/wishlist.html', {'wishlist': produtos})
 
 
 def adicionar_wishlist(request, produto_id):
@@ -87,15 +87,15 @@ def limpar_wishlist(request):
     return redirect('wishlist')
 
 def checkout_view(request):
-    return render(request, 'checkout.html')
+    return render(request, 'app_marketoon/checkout.html')
 
 def carrinho(request):
     carrinho_ids = request.session.get('carrinho', [])
     produtos = func_registrar_produto.objects.filter(id__in=carrinho_ids)
     if not produtos:
-        return render(request, 'carrinho.html', {'produtos': produtos, 'mensagem': 'Seu carrinho está vazio.'})
+        return render(request, 'app_marketoon/carrinho.html', {'produtos': produtos, 'mensagem': 'Seu carrinho está vazio.'})
 
-    return render(request, 'carrinho.html', {'produtos': produtos})
+    return render(request, 'app_marketoon/carrinho.html', {'produtos': produtos})
 
 def adicionar_carrinho(request, produto_id):
     produto = get_object_or_404(func_registrar_produto, id=produto_id)
@@ -119,4 +119,4 @@ def limpar_carrinho(request):
 
 def produtos(request):
     produtos = func_registrar_produto.objects.all()  
-    return render(request, 'produtos.html', {'produtos': produtos})
+    return render(request, 'app_marketoon/produtos.html', {'produtos': produtos})

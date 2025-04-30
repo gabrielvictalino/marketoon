@@ -5,7 +5,7 @@
 ````
 ESSE É UM REPOSITÓRIO NOVO, O LINK DO ANTIGO ESTÁ ABAIXO
 ````
-- [Repositório antigo](link)
+- [Repositório antigo](https://github.com/LeoGutzeitt/MARKETOON.git)
 
 ## 👥 Equipe
 ````
