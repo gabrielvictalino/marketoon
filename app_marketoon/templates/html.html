@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Cadastro de Produto</title>
+</head>
+<body>
+    <h1>Cadastro de Produto</h1>
+    
+    <form action="" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        
+        <label for="nome">Nome:</label><br>
+        <input type="text" id="nome" name="nome" required><br><br>
+
+        <label for="email">Email:</label><br>
+        <input type="email" id="email" name="email" required><br><br>
+
+        <label for="telefone">Telefone:</label><br>
+        <input type="text" id="telefone" name="telefone" required><br><br>
+
+        <label for="descricao">Descrição:</label><br>
+        <textarea id="descricao" name="descricao" required></textarea><br><br>
+
+        <label for="preco">Preço:</label><br>
+        <input type="number" id="preco" name="preco" step="0.01" required><br><br>
+
+        <label for="imagem">Imagem:</label><br>
+        <input type="file" id="imagem" name="imagem" accept="image/*"><br><br>
+
+        <button type="submit">Cadastrar Produto</button>
+    </form>
+
+    <br>
+    <a href="{% url 'home' %}">Voltar para a página inicial</a>
+</body>
+</html>
